@@ -39,6 +39,39 @@ app.post("/user", async (request, response) => {
   }
 });
 
+app.post("/getallcards", verifyToken, async (request, response) => {
+  try {
+    const conn = await pool.getConnection();
+
+    const allCards = await conn.execute("SELECT * FROM fbcardsdb.cards");
+    // console.log(allCards);
+    conn.release();
+    response.status(200).send(allCards[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
+app.post("/getownedcards", verifyToken, async (request, response) => {
+  try {
+    const username = request.decodedToken.username;
+
+    const conn = await pool.getConnection();
+
+    const ownedCards = await conn.execute(
+      `SELECT * FROM fbcardsdb.cards WHERE owner=?`,
+      [username]
+    );
+
+    conn.release();
+    response.status(200).send(ownedCards[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
 app.post("/login", async (request, response) => {
   try {
     if (!request.body.username || !request.body.password) {
@@ -76,5 +109,21 @@ app.post("/login", async (request, response) => {
     console.log(error);
   }
 });
+
+function verifyToken(request, response, next) {
+  const token = request.body.jwt;
+  if (token === null) {
+    return response.status(401).send({ message: "token is null" });
+  } else {
+    jwt.verify(token, process.env.ACCESS_TOKEN, (err, decodedToken) => {
+      if (err) {
+        return response.stauts(401).send();
+      } else {
+        request.decodedToken = decodedToken;
+        next();
+      }
+    });
+  }
+}
 
 app.listen(4000, () => console.log("server is running on 4000"));
