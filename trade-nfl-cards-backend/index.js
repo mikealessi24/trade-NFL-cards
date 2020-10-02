@@ -39,6 +39,20 @@ app.post("/user", async (request, response) => {
   }
 });
 
+app.post("/getallusers", verifyToken, async (request, response) => {
+  try {
+    const conn = await pool.getConnection();
+
+    const allUsers = await conn.execute("SELECT * FROM fbcardsdb.users");
+
+    conn.release();
+    response.status(200).send(allUsers[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
 app.post("/getallcards", verifyToken, async (request, response) => {
   try {
     const conn = await pool.getConnection();
@@ -66,6 +80,25 @@ app.post("/getownedcards", verifyToken, async (request, response) => {
 
     conn.release();
     response.status(200).send(ownedCards[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
+app.post("/tradecard", verifyToken, async (request, response) => {
+  try {
+    const recievingUser = request.body.username;
+    const cardId = request.body.id;
+
+    const conn = await pool.getConnection();
+    const trade = await conn.execute(
+      `UPDATE fbcardsdb.cards SET owner=? WHERE id=?`,
+      [recievingUser, Number(cardId)]
+    );
+
+    conn.release();
+    response.status(200).send({ message: "traded" });
   } catch (error) {
     response.status(500).send(error);
     console.log(error);
