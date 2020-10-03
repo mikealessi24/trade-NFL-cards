@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import SignIn from "./pages/SignIn";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 function App() {
-  return <div></div>;
+  const [signedIn, setSignedIn] = useState(undefined);
+  return (
+    <div>
+      {!signedIn ? (
+        <SignIn setSignedIn={setSignedIn} />
+      ) : (
+        <PrivateRoutes setSignedIn={setSignedIn} />
+      )}
+    </div>
+  );
 }
 
 export default App;
