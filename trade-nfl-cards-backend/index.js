@@ -88,6 +88,20 @@ app.post("/getownedcards", verifyToken, async (request, response) => {
   }
 });
 
+app.post("/gettradedcards", verifyToken, async (request, response) => {
+  try {
+    const conn = await pool.getConnection();
+
+    const tradedCards = await conn.execute(`SELECT * FROM fbcardsdb.trades`);
+
+    conn.release();
+    response.status(200).send(tradedCards[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
 app.post("/tradecard", verifyToken, async (request, response) => {
   try {
     const username = request.decodedToken.username;

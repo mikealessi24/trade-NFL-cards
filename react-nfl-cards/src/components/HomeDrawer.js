@@ -69,9 +69,9 @@ export default function HomeDrawer() {
         </Link>
       </List>
       <List>
-        <Link to="/cardcatalog">
+        <Link to="/cardforum">
           <ListItem button>
-            <ListItemText>Card Catalog</ListItemText>
+            <ListItemText>Card Forum</ListItemText>
           </ListItem>
         </Link>
       </List>

@@ -14,31 +14,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardTable() {
+export default function TradeTable({ trades }) {
   const classes = useStyles();
 
   return (
     <TableContainer style={style.tableCont} component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell align="right">Position</TableCell>
-            <TableCell align="right">Team</TableCell>
-            <TableCell align="right">Card Owner</TableCell>
-          </TableRow>
-        </TableHead>
         <TableBody>
-          {/* {cards.map((card) => ( */}
-          <TableRow>
-            <TableCell component="th" scope="row">
-              trade
-            </TableCell>
-            <TableCell align="right">trade</TableCell>
-            <TableCell align="right">trade</TableCell>
-            <TableCell align="right">trade</TableCell>
-          </TableRow>
-          {/* ))} */}
+          {trades.map((trade) => (
+            <TableRow key={trade.carid}>
+              <TableCell component="th" scope="row">
+                {trade.user}
+              </TableCell>
+              <TableCell align="right">{trade.recipient}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
@@ -48,6 +38,6 @@ export default function CardTable() {
 const style = {
   tableCont: {
     height: "85vh",
-    overflow: "scroll",
+    width: "85vw",
   },
 };
