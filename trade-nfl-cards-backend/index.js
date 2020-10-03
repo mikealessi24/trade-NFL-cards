@@ -88,17 +88,25 @@ app.post("/getownedcards", verifyToken, async (request, response) => {
 
 app.post("/tradecard", verifyToken, async (request, response) => {
   try {
+    const username = request.decodedToken.username;
     const recievingUser = request.body.username;
-    const cardId = request.body.id;
+    const card = Number(request.body.id);
 
     const conn = await pool.getConnection();
     const trade = await conn.execute(
       `UPDATE fbcardsdb.cards SET owner=? WHERE id=?`,
-      [recievingUser, Number(cardId)]
+      [recievingUser, card]
+    );
+    conn.release();
+    const conn2 = await pool.getConnection();
+
+    const addTrade = await conn2.execute(
+      `INSERT INTO fbcardsdb.trades (cardid, user, recipient) VALUES (?,?,?)`,
+      [card, username, recievingUser]
     );
 
-    conn.release();
-    response.status(200).send({ message: "traded" });
+    conn2.release();
+    response.status(200).send({ message: "trade successful" });
   } catch (error) {
     response.status(500).send(error);
     console.log(error);
