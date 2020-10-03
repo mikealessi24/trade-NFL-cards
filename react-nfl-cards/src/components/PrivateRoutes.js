@@ -12,13 +12,9 @@ export default function PrivateRoutes({ setSignedIn, signedIn }) {
       <Navbar setSignedIn={setSignedIn} signedIn={signedIn} />
       <Router>
         <Home path="/home" setSignedIn={setSignedIn} signedIn={signedIn} />
-        <MyCards
-          path="/mycards"
-          setSignedIn={setSignedIn}
-          signedIn={signedIn}
-        />
+        <MyCards path="/mycards" signedIn={signedIn} />
         <Trades path="/trades" />
-        <Gallery path="/gallery" />
+        <Gallery path="/gallery" signedIn={signedIn} />
       </Router>
     </div>
   );

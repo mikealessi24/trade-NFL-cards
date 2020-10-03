@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FbCard from "../components/FbCard";
 
-export default function MyCards({ setSignedIn, signedIn }) {
+export default function MyCards({ signedIn }) {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     axios

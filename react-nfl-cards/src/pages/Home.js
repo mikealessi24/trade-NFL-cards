@@ -18,7 +18,7 @@ export default function Home({ setSignedIn, signedIn }) {
   return (
     <div style={style.homePage}>
       <div style={style.forum}>forum maybe</div>
-      <div>
+      <div style={style.table}>
         <CardTable cards={cards} />
       </div>
     </div>
@@ -28,9 +28,13 @@ export default function Home({ setSignedIn, signedIn }) {
 const style = {
   homePage: {
     display: "flex",
+    justifyContent: "space-evenly",
     margin: 25,
   },
   forum: {
-    width: "50%",
+    width: "47%",
+  },
+  table: {
+    width: "47%",
   },
 };
