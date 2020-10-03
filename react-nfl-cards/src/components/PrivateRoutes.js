@@ -4,7 +4,8 @@ import Home from "../pages/Home";
 import Navbar from "./Navbar";
 import MyCards from "../pages/MyCards";
 import Trades from "../pages/Trades";
-import Gallery from "../pages/Gallery";
+import Gallery from "../pages/CardCatalog";
+import CardCatalog from "../pages/CardCatalog";
 
 export default function PrivateRoutes({ setSignedIn, signedIn }) {
   return (
@@ -14,7 +15,7 @@ export default function PrivateRoutes({ setSignedIn, signedIn }) {
         <Home path="/home" setSignedIn={setSignedIn} signedIn={signedIn} />
         <MyCards path="/mycards" signedIn={signedIn} />
         <Trades path="/trades" />
-        <Gallery path="/gallery" signedIn={signedIn} />
+        <CardCatalog path="/cardcatalog" signedIn={signedIn} />
       </Router>
     </div>
   );

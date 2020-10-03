@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function GalleryCard({ card }) {
+export default function CatalogCard({ card }) {
   const classes = useStyles();
 
   return (

@@ -14,23 +14,31 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardTable({ cards }) {
+export default function CardTable() {
   const classes = useStyles();
 
   return (
     <TableContainer style={style.tableCont} component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableBody style={style.tableContent}>
-          {cards.map((card) => (
-            <TableRow key={card.id}>
-              <TableCell component="th" scope="row">
-                {card.name}
-              </TableCell>
-              <TableCell align="right">{card.position}</TableCell>
-              <TableCell align="right">{card.team}</TableCell>
-              <TableCell align="right">{card.owner}</TableCell>
-            </TableRow>
-          ))}
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell align="right">Position</TableCell>
+            <TableCell align="right">Team</TableCell>
+            <TableCell align="right">Card Owner</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {/* {cards.map((card) => ( */}
+          <TableRow>
+            <TableCell component="th" scope="row">
+              trade
+            </TableCell>
+            <TableCell align="right">trade</TableCell>
+            <TableCell align="right">trade</TableCell>
+            <TableCell align="right">trade</TableCell>
+          </TableRow>
+          {/* ))} */}
         </TableBody>
       </Table>
     </TableContainer>
@@ -40,8 +48,6 @@ export default function CardTable({ cards }) {
 const style = {
   tableCont: {
     height: "85vh",
-  },
-  tableContent: {
     overflow: "scroll",
   },
 };

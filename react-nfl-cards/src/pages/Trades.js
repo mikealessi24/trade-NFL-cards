@@ -1,5 +1,10 @@
 import React from "react";
+import TradeTable from "../components/TradeTable";
 
 export default function Trades() {
-  return <div>Trade page</div>;
+  return (
+    <div>
+      <TradeTable />
+    </div>
+  );
 }

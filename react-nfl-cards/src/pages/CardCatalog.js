@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GalleryCard from "../components/GalleryCard";
+import CatalogCard from "../components/CatalogCard";
 
-export default function Gallery({ signedIn }) {
+export default function CardCatalog({ signedIn }) {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     axios
@@ -15,16 +15,16 @@ export default function Gallery({ signedIn }) {
   }, []);
 
   return (
-    <div style={style.galleryCont}>
+    <div style={style.catalogCont}>
       {cards.map((card) => {
-        return <GalleryCard card={card} />;
+        return <CatalogCard card={card} />;
       })}
     </div>
   );
 }
 
 const style = {
-  galleryCont: {
+  catalogCont: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
