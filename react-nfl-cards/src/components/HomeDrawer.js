@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { Link } from "@reach/router";
 
 const useStyles = makeStyles({
   list: {
@@ -47,11 +48,32 @@ export default function HomeDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["My Cards", "Recent Trades", "Gallery"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+        <Link to="/home">
+          <ListItem button>
+            <ListItemText>Home</ListItemText>
           </ListItem>
-        ))}
+        </Link>
+      </List>
+      <List>
+        <Link to="/mycards">
+          <ListItem button>
+            <ListItemText>My Cards</ListItemText>
+          </ListItem>
+        </Link>
+      </List>
+      <List>
+        <Link to="/trades">
+          <ListItem button>
+            <ListItemText>Recent Trades</ListItemText>
+          </ListItem>
+        </Link>
+      </List>
+      <List>
+        <Link to="/gallery">
+          <ListItem button>
+            <ListItemText>Gallery</ListItemText>
+          </ListItem>
+        </Link>
       </List>
     </div>
   );

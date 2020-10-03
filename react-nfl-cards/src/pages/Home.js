@@ -4,19 +4,20 @@ import axios from "axios";
 import HomeDrawer from "../components/HomeDrawer";
 
 export default function Home({ setSignedIn, signedIn }) {
-  const [cards, setcards] = useState([]);
+  const [cards, setCards] = useState([]);
   useEffect(() => {
     axios
       .post("http://localhost:4000/getallcards", {
         jwt: signedIn,
       })
       .then((response) => {
-        setcards(response.data);
+        setCards(response.data);
       });
   }, []);
+
   return (
     <div style={style.homePage}>
-      <div style={style.forum}></div>
+      <div style={style.forum}>forum maybe</div>
       <div>
         <CardTable cards={cards} />
       </div>
