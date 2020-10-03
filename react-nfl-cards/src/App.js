@@ -9,7 +9,7 @@ function App() {
       {!signedIn ? (
         <SignIn setSignedIn={setSignedIn} />
       ) : (
-        <PrivateRoutes setSignedIn={setSignedIn} />
+        <PrivateRoutes setSignedIn={setSignedIn} signedIn={signedIn} />
       )}
     </div>
   );

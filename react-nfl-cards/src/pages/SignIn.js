@@ -92,7 +92,8 @@ export default function SignIn({ setSignedIn }) {
                     setSignedIn(response.data.jwt);
                     navigate("/home");
                   }
-                });
+                })
+                .catch(() => alert("Incorrect username or password"));
             }}
           >
             <TextField
