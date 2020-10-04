@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CardTable from "../components/CardTable";
 import axios from "axios";
 
-export default function CardForum({ signedIn }) {
+export default function CardForum({ signedIn, available }) {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     axios
@@ -18,13 +18,7 @@ export default function CardForum({ signedIn }) {
     <div style={style.homePage}>
       <div style={style.forum}>forum maybe</div>
       <div style={style.table}>
-        <div style={style.tableHeader}>
-          <div style={style.head1}>Player</div>
-          <div style={style.head2}>Position</div>
-          <div style={style.head3}>Team</div>
-          <div style={style.head4}>Owner</div>
-        </div>
-        <CardTable cards={cards} />
+        <CardTable cards={cards} available={available} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardTable({ cards }) {
+export default function CardTable({ cards, available }) {
   const classes = useStyles();
 
   return (

@@ -15,6 +15,13 @@ function App() {
   );
 }
 
-const style = {};
+const style = {
+  background: {
+    backgroundImage:
+      "url('https://www.fccnn.com/news/article805616.ece/alternates/BASE_LANDSCAPE/3945147%2Bnfl.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+};
 
 export default App;

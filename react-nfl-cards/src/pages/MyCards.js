@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FbCard from "../components/FbCard";
 
-export default function MyCards({ signedIn }) {
+export default function MyCards({ signedIn, available, setAvailable }) {
   const [cards, setCards] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -28,7 +28,14 @@ export default function MyCards({ signedIn }) {
     <div style={style.cardCont}>
       {cards.map((card) => {
         return (
-          <FbCard key={card.id} signedIn={signedIn} card={card} users={users} />
+          <FbCard
+            key={card.id}
+            signedIn={signedIn}
+            card={card}
+            users={users}
+            available={available}
+            setAvailable={setAvailable}
+          />
         );
       })}
     </div>

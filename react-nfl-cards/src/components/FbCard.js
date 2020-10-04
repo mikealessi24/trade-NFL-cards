@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -19,8 +19,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FbCard({ signedIn, card, users }) {
+export default function FbCard({
+  signedIn,
+  card,
+  users,
+  available,
+  setAvailable,
+}) {
   const classes = useStyles();
+
+  function toggleAvailable() {
+    setAvailable(card);
+    alert("This card was made available");
+  }
 
   return (
     <Card className={classes.root}>
@@ -44,6 +55,13 @@ export default function FbCard({ signedIn, card, users }) {
       </CardActionArea>
       <CardActions>
         <TradeMenu signedIn={signedIn} cardId={card.id} users={users} />
+        {/* <Button
+          onClick={() => {
+            toggleAvailable();
+          }}
+        >
+          Make Available
+        </Button> */}
       </CardActions>
     </Card>
   );
