@@ -96,7 +96,10 @@ app.post("/gettradedcards", verifyToken, async (request, response) => {
   try {
     const conn = await pool.getConnection();
 
-    const tradedCards = await conn.execute(`SELECT * FROM fbcardsdb.trades`);
+    await conn.query("USE fbcardsdb");
+    const tradedCards = await conn.query(`SELECT cards.id, cards.name, cards.team, cards.position, trades.user, trades.recipient 
+    FROM cards
+    JOIN trades ON cards.id=trades.cardid`);
 
     conn.release();
     response.status(200).send(tradedCards[0]);

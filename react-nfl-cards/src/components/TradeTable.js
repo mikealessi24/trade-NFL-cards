@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -16,15 +16,31 @@ const useStyles = makeStyles({
 
 export default function TradeTable({ trades }) {
   const classes = useStyles();
+  console.log(trades);
 
   return (
     <TableContainer style={style.tableCont} component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableBody>
+        <TableBody style={style.tableBody}>
           {trades.map((trade) => (
-            <TableRow key={trade.carid}>
+            <TableRow key={trade.cardid}>
               <TableCell component="th" scope="row">
                 {trade.user}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                TRADED
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {trade.team}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {trade.position}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {trade.name}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                TO
               </TableCell>
               <TableCell align="right">{trade.recipient}</TableCell>
             </TableRow>
@@ -40,4 +56,5 @@ const style = {
     height: "85vh",
     width: "85vw",
   },
+  tableBody: {},
 };

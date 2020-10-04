@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function Trades({ signedIn }) {
   const [trades, setTrades] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     axios
@@ -12,9 +13,10 @@ export default function Trades({ signedIn }) {
       })
       .then((response) => setTrades(response.data));
   }, []);
+
   return (
     <div style={style.tradeCont}>
-      <TradeTable trades={trades} />
+      <TradeTable trades={trades} cards={cards} />
     </div>
   );
 }
