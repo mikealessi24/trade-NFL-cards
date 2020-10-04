@@ -34,6 +34,7 @@ const style = {
   homePage: {
     display: "flex",
     justifyContent: "space-evenly",
+    height: "95vh",
     margin: 25,
   },
   forum: {

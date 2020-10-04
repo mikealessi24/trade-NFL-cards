@@ -4,6 +4,8 @@ import FbCard from "../components/FbCard";
 
 export default function MyCards({ signedIn }) {
   const [cards, setCards] = useState([]);
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     axios
       .post("http://localhost:4000/getownedcards", {
@@ -12,12 +14,22 @@ export default function MyCards({ signedIn }) {
       .then((response) => {
         setCards(response.data);
       });
+  }, [cards]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:4000/getallusers", {
+        jwt: signedIn,
+      })
+      .then((response) => setUsers(response.data));
   }, []);
 
   return (
     <div style={style.cardCont}>
       {cards.map((card) => {
-        return <FbCard key={card.id} card={card} />;
+        return (
+          <FbCard key={card.id} signedIn={signedIn} card={card} users={users} />
+        );
       })}
     </div>
   );
@@ -27,6 +39,6 @@ const style = {
   cardCont: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
 };

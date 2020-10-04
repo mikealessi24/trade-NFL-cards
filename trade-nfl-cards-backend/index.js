@@ -43,9 +43,13 @@ app.post("/user", async (request, response) => {
 
 app.post("/getallusers", verifyToken, async (request, response) => {
   try {
+    const username = request.decodedToken.username;
     const conn = await pool.getConnection();
 
-    const allUsers = await conn.execute("SELECT * FROM fbcardsdb.users");
+    const allUsers = await conn.execute(
+      "SELECT * FROM fbcardsdb.users WHERE username!=?",
+      [username]
+    );
 
     conn.release();
     response.status(200).send(allUsers[0]);
@@ -105,7 +109,7 @@ app.post("/gettradedcards", verifyToken, async (request, response) => {
 app.post("/tradecard", verifyToken, async (request, response) => {
   try {
     const username = request.decodedToken.username;
-    const recievingUser = request.body.username;
+    const recievingUser = request.body.recipient;
     const card = Number(request.body.id);
 
     const conn = await pool.getConnection();

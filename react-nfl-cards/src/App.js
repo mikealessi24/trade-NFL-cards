@@ -5,7 +5,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 function App() {
   const [signedIn, setSignedIn] = useState(undefined);
   return (
-    <div>
+    <div style={style.background}>
       {!signedIn ? (
         <SignIn setSignedIn={setSignedIn} />
       ) : (
@@ -14,5 +14,7 @@ function App() {
     </div>
   );
 }
+
+const style = {};
 
 export default App;

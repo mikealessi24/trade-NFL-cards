@@ -57,21 +57,21 @@ export default function HomeDrawer() {
       <List>
         <Link to="/mycards">
           <ListItem button>
-            <ListItemText>My Cards</ListItemText>
+            <ListItemText>My Dashboard</ListItemText>
           </ListItem>
         </Link>
       </List>
       <List>
         <Link to="/trades">
           <ListItem button>
-            <ListItemText>Recent Trades</ListItemText>
+            <ListItemText>Trade Activity</ListItemText>
           </ListItem>
         </Link>
       </List>
       <List>
         <Link to="/cardforum">
           <ListItem button>
-            <ListItemText>Card Forum</ListItemText>
+            <ListItemText>Forum</ListItemText>
           </ListItem>
         </Link>
       </List>
