@@ -7,7 +7,7 @@ export default function PublicRoutes({ setSignedIn }) {
   return (
     <div>
       <Router>
-        <SignIn path="/" setSignedIn={setSignedIn} />
+        <SignIn default setSignedIn={setSignedIn} />
         <SignUp path="/signup" />
       </Router>
     </div>
