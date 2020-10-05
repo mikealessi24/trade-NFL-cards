@@ -46,6 +46,6 @@ export default function Navbar({ setSignedIn }) {
 
 const style = {
   nav: {
-    backgroundColor: "blue",
+    backgroundColor: "DarkBlue",
   },
 };

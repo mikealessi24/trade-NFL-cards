@@ -11,6 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { Link } from "@reach/router";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles({
   list: {
@@ -57,7 +58,7 @@ export default function HomeDrawer() {
       <List>
         <Link to="/mycards">
           <ListItem button>
-            <ListItemText>My Dashboard</ListItemText>
+            <ListItemText>My Cards</ListItemText>
           </ListItem>
         </Link>
       </List>
@@ -82,7 +83,9 @@ export default function HomeDrawer() {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon style={style.icon} />
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
@@ -95,3 +98,9 @@ export default function HomeDrawer() {
     </div>
   );
 }
+
+const style = {
+  icon: {
+    color: "white",
+  },
+};

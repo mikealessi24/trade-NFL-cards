@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import CardTable from "../components/CardTable";
+import Post from "../components/Post";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 export default function CardForum({ signedIn, available }) {
   const [cards, setCards] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [textBody, setTextBody] = useState([]);
   useEffect(() => {
     axios
       .post("http://localhost:4000/getallcards", {
@@ -14,9 +19,46 @@ export default function CardForum({ signedIn, available }) {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .post("http://localhost:4000/getallposts", {
+        jwt: signedIn,
+      })
+      .then((response) => {
+        setPosts(response.data);
+      });
+  }, [posts]);
+
+  function createPost() {
+    axios
+      .post("http://localhost:4000/post", {
+        jwt: signedIn,
+        text: textBody,
+      })
+      .then((response) => console.log(response.data));
+  }
+
   return (
     <div style={style.homePage}>
-      <div style={style.forum}>forum maybe</div>
+      <Paper style={style.forum}>
+        <div style={style.textContent}>
+          {posts.map((post) => {
+            return <Post post={post} />;
+          })}
+        </div>
+        <div style={style.textBox}>
+          <textarea
+            placeholder="Post a message to all owners..."
+            style={style.text}
+            onChange={(event) => {
+              setTextBody(event.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <Button onClick={() => createPost()}>Create Post</Button>
+        </div>
+      </Paper>
       <div style={style.table}>
         <CardTable cards={cards} available={available} />
       </div>
@@ -33,6 +75,13 @@ const style = {
   },
   forum: {
     width: "47%",
+    backgroundColor: "white",
+    height: "85vh",
+    borderRadius: "3px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   table: {
     width: "47%",
@@ -41,16 +90,26 @@ const style = {
     display: "flex",
     justifyContent: "space-between",
   },
-  head1: {
-    marginLeft: "40px",
+  textBox: {
+    width: "50%",
+    height: "10%",
   },
-  head2: {
-    marginLeft: "120px",
+  textContent: {
+    width: "90%",
+    height: "100%",
+    margin: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundImage:
+      "url('https://www.sohh.com/wp-content/uploads/2020/07/NFL-Symbol-Logo.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    overflow: "scroll",
   },
-  head3: {
-    marginLeft: "70px",
-  },
-  head4: {
-    marginRight: "10px",
+  text: {
+    width: "100%",
+    height: "100%",
+    resize: "none",
   },
 };

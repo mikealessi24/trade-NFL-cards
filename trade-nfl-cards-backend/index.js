@@ -59,6 +59,40 @@ app.post("/getallusers", verifyToken, async (request, response) => {
   }
 });
 
+app.post("/post", verifyToken, async (request, response) => {
+  try {
+    const creator = request.decodedToken.username;
+    const text = request.body.text;
+
+    const conn = await pool.getConnection();
+
+    const createdPost = await conn.execute(
+      "INSERT INTO fbcardsdb.posts (text, creator) VALUES(?,?)",
+      [text, creator]
+    );
+
+    conn.release();
+    response.status(201).send(createdPost);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
+app.post("/getallposts", verifyToken, async (request, response) => {
+  try {
+    const conn = await pool.getConnection();
+
+    allPosts = await conn.query("SELECT * FROM fbcardsdb.posts");
+
+    conn.release();
+    response.status(200).send(allPosts[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
 app.post("/getallcards", verifyToken, async (request, response) => {
   try {
     const conn = await pool.getConnection();
