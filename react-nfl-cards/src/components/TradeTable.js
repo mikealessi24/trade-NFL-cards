@@ -31,13 +31,13 @@ export default function TradeTable({ trades }) {
                 TRADED
               </TableCell>
               <TableCell component="th" scope="row">
-                {trade.team}
+                {trade.name}
               </TableCell>
               <TableCell component="th" scope="row">
                 {trade.position}
               </TableCell>
               <TableCell component="th" scope="row">
-                {trade.name}
+                {trade.team}
               </TableCell>
               <TableCell component="th" scope="row">
                 TO

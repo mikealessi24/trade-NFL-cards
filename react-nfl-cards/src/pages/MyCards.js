@@ -25,19 +25,21 @@ export default function MyCards({ signedIn, available, setAvailable }) {
   }, []);
 
   return (
-    <div style={style.cardCont}>
-      {cards.map((card) => {
-        return (
-          <FbCard
-            key={card.id}
-            signedIn={signedIn}
-            card={card}
-            users={users}
-            available={available}
-            setAvailable={setAvailable}
-          />
-        );
-      })}
+    <div style={style.page}>
+      <div style={style.cardCont}>
+        {cards.map((card) => {
+          return (
+            <FbCard
+              key={card.id}
+              signedIn={signedIn}
+              card={card}
+              users={users}
+              available={available}
+              setAvailable={setAvailable}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -47,5 +49,8 @@ const style = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+  },
+  page: {
+    minHeight: "100vh",
   },
 };

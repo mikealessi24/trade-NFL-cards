@@ -65,7 +65,7 @@ export default function HomeDrawer() {
       <List>
         <Link to="/trades">
           <ListItem button>
-            <ListItemText>Trade Activity</ListItemText>
+            <ListItemText>Trade History</ListItemText>
           </ListItem>
         </Link>
       </List>
@@ -73,6 +73,13 @@ export default function HomeDrawer() {
         <Link to="/cardforum">
           <ListItem button>
             <ListItemText>Forum</ListItemText>
+          </ListItem>
+        </Link>
+      </List>
+      <List>
+        <Link to="/addcard">
+          <ListItem button>
+            <ListItemText>Add a card</ListItemText>
           </ListItem>
         </Link>
       </List>

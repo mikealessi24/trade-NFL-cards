@@ -4,6 +4,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const { response } = require("express");
 
 const app = express();
 app.use(express.json());
@@ -87,6 +88,29 @@ app.post("/getallposts", verifyToken, async (request, response) => {
 
     conn.release();
     response.status(200).send(allPosts[0]);
+  } catch (error) {
+    response.status(500).send(error);
+    console.log(error);
+  }
+});
+
+app.post("/createcard", verifyToken, async (request, response) => {
+  try {
+    const owner = request.decodedToken.username;
+    const name = request.body.name;
+    const position = request.body.position;
+    const team = request.body.team;
+    const image = request.body.image;
+
+    const conn = await pool.getConnection();
+
+    const createCard = await conn.execute(
+      "INSERT INTO fbcardsdb.cards (name,position,team,image,owner) VALUES (?,?,?,?,?)",
+      [name, position, team, image, owner]
+    );
+
+    conn.release();
+    response.status(201).send(createCard);
   } catch (error) {
     response.status(500).send(error);
     console.log(error);

@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import MyCards from "../pages/MyCards";
 import Trades from "../pages/Trades";
 import CardForum from "../pages/CardForum";
+import AddCard from "../pages/AddCard";
 
 export default function PrivateRoutes({ setSignedIn, signedIn }) {
   const [available, setAvailable] = useState([]);
@@ -26,6 +27,7 @@ export default function PrivateRoutes({ setSignedIn, signedIn }) {
           signedIn={signedIn}
           available={available}
         />
+        <AddCard path="/addcard" signedIn={signedIn} />
       </Router>
     </div>
   );
@@ -34,8 +36,9 @@ export default function PrivateRoutes({ setSignedIn, signedIn }) {
 const style = {
   background: {
     backgroundImage:
-      "url('https://www.fccnn.com/news/article805616.ece/alternates/BASE_LANDSCAPE/3945147%2Bnfl.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+      "url('https://previews.123rf.com/images/sittipong/sittipong1401/sittipong140100059/25235868-green-artificial-turf-pattern-texture-for-background.jpg')",
+    backgroundSize: "100vw",
+    bagroundPosition: "center",
+    backgroundRepeat: "repeat",
   },
 };

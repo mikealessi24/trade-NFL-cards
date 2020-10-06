@@ -70,7 +70,6 @@ const style = {
   homePage: {
     display: "flex",
     justifyContent: "space-evenly",
-    height: "95vh",
     margin: 25,
   },
   forum: {
@@ -91,8 +90,8 @@ const style = {
     justifyContent: "space-between",
   },
   textBox: {
-    width: "50%",
-    height: "10%",
+    width: "90%",
+    height: "15%",
   },
   textContent: {
     width: "90%",
